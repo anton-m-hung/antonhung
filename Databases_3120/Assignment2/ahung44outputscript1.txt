@@ -1,0 +1,136 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SHOW databases
+--------------
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| ahung44assign2db   |
+| flipped3           |
+| mysql              |
+| performance_schema |
+| vetoffice          |
++--------------------+
+6 rows in set (0,00 sec)
+
+--------------
+DROP DATABASE IF EXISTS ahung44assign2db
+--------------
+
+Query OK, 4 rows affected (0,32 sec)
+
+--------------
+CREATE DATABASE ahung44assign2db
+--------------
+
+Query OK, 1 row affected (0,00 sec)
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+Query OK, 0 rows affected (0,00 sec)
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+Query OK, 0 rows affected (0,00 sec)
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+Query OK, 0 rows affected (0,00 sec)
+
+--------------
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost'
+--------------
+
+Query OK, 0 rows affected (0,01 sec)
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+Query OK, 0 rows affected (0,00 sec)
+
+--------------
+SHOW TABLES
+--------------
+
+Empty set (0,00 sec)
+
+--------------
+CREATE TABLE westernCourse (
+	westernNum CHAR(6) PRIMARY KEY,
+  	westernName VARCHAR(50) NOT NULL, 
+	Weight REAL(2,1) NOT NULL, 
+	suffix VARCHAR(3)
+)
+--------------
+
+Query OK, 0 rows affected (0,04 sec)
+
+--------------
+CREATE TABLE university (
+	UName VARCHAR(50) NOT NULL, 
+	UID TINYINT PRIMARY KEY NOT NULL, 
+	city VARCHAR(50) NOT NULL, 
+	province VARCHAR(50) NOT NULL, 
+	nickname VARCHAR(20) NOT NULL
+)
+--------------
+
+Query OK, 0 rows affected (0,06 sec)
+
+--------------
+CREATE TABLE outsideCourse (
+	outsideNum CHAR(10) NOT NULL, 
+	outsideName VARCHAR(50) NOT NULL, 
+    yearOffered INT NOT NULL, 
+	weight REAL(2,1) NOT NULL, 
+	UID TINYINT NOT NULL, 
+	FOREIGN KEY (UID) 
+		REFERENCES university(UID),
+	PRIMARY KEY (outsideNum, UID)
+)
+--------------
+
+Query OK, 0 rows affected (0,15 sec)
+
+--------------
+CREATE TABLE equivalentTo (
+	westernNum CHAR(6) NOT NULL,
+	FOREIGN KEY(westernNum)
+		REFERENCES westernCourse(westernNum)
+		ON DELETE CASCADE,
+	outsideNum CHAR(10) NOT NULL,
+	UID TINYINT NOT NULL, 
+	FOREIGN KEY (outsideNum, UID)
+		REFERENCES outsideCourse(outsideNum, UID)
+		ON DELETE CASCADE,
+	dateDecided DATE NOT NULL,
+	PRIMARY KEY (westernNum , outsideNum, UID)
+)
+--------------
+
+Query OK, 0 rows affected (0,18 sec)
+
+--------------
+SHOW TABLES
+--------------
+
++----------------------------+
+| Tables_in_ahung44assign2db |
++----------------------------+
+| equivalentTo               |
+| outsideCourse              |
+| university                 |
+| westernCourse              |
++----------------------------+
+4 rows in set (0,00 sec)
+
+Bye
