@@ -1,3 +1,6 @@
+This is an application I coded using MATLAB for my undergraduate thesis project in Medical Health Informatics at Western University (London, Ontario, Canada)
+The idea of this project was to validate the clinical utility of optical coherence tomography (OCT) for generating accurate images of oral lesions to be able to identify cancers and pre-cancers. The program that I coded is able to take light intensity data collected from an OCT image to computationally model the attenuation coefficient of an oral tissue sample. The idea is that we will be able to use the attenuation coefficient values to determine whether an oral tissue sample contains cancer or not.
+
 octrun.m is the main file. All other files are called from within octrun.m
 Simply type octrun in the matlab command window to open the application GUI
 
