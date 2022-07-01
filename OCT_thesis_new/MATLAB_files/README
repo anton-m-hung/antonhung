@@ -1,0 +1,12 @@
+README
+
+1. The folder containing all (6) matlab functions must be added to the path.
+	- type: addpath(foldername)
+
+2. octrun.m is the main menu file. 
+	- type: octrun to open the main GUI
+
+3. You can set both the working directory (OCT images will be accessed from here) and a save directory (location where images and attenuation coefficient results will be saved)
+
+4. OCT data (.csv files) must be in folders, and you must set the current working directory to be just outside of the folder(s) which contain .csv files. the code is currently not able to access .csv files if they are in the current working directory.
+	- For example, included in the folder I shared with you, I have separated intralipid .csv files into separate folders, where each folder contains all intralipid files for a specific concentration. The code will work fine if the current working directory is not changed. But if the current working directory is changed to be inside of one of the folders (e.g., 1%), the code cannot access the .csv files because they would be in the current working directory.
